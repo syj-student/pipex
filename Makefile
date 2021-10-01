@@ -14,7 +14,7 @@ NAME	= pipex
 CC		= gcc
 CFLAGS	= -Wextra -Wall -Werror
 
-SRCS	= main.c
+SRCS	= main.c utils_1.c
 OBJS	= $(SRCS:.c=.o)
 
 all		: $(NAME)
