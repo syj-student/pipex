@@ -66,18 +66,21 @@ static size_t	g_cnt(char const *s, char c)
 	return (cnt);
 }
 
-static char	**splitEarlyError(char *s, char c)
+static char	**splitEarlyError(char *s, char c, size_t j)
 {
-	char **ret;
+	char	**ret;
+	size_t	i;
 
 	if (!s)
 		return (0);
-	ret = (char **)malloc(sizeof(char *) * (g_cnt(s, c) + 1));
+	i = (g_cnt(s, c) + 1);
+	ret = (char **)malloc(sizeof(char *) * i);
 	if (!ret)
 		return (0);
+	ret[i] = 0;
+	*j = 0;
 	return (ret);
 }
-
 
 char	**ft_split(char const *s, char c)
 {
@@ -86,10 +89,9 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	len;
 
-	ret = splitEarlyError(s, c);
+	ret = splitEarlyError(s, c, &i);
 	if (!ret)
 		return (NULL);
-	i = 0;
 	while (*s)
 	{
 		if (*s != c)
@@ -106,6 +108,5 @@ char	**ft_split(char const *s, char c)
 		else
 			s++;
 	}
-	ret[i] = 0;
 	return (ret);
 }
