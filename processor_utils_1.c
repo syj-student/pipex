@@ -38,7 +38,6 @@ void	parentProcess(char **argv, char **env, int *fd)
 {
 	int outputFilefd;
 
-	wait(NULL);
 	outputFilefd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outputFilefd == -1)
 		errorExit("OUTFILE_FAILURE");
@@ -78,7 +77,7 @@ char	*findPath(char **paths, char **cmd)
 		tmp = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(tmp, cmd[0]);
 		free(tmp);
-		if (!access(path, F_OK))
+		if (!access(path, X_OK))
 			return (path);
 	}
 	return (0);
