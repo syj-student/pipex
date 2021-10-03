@@ -14,7 +14,7 @@
 
 void	errorExit(char *errorMsg)
 {
-	ft_put(errorMsg);
+	perror(errorMsg);
 	exit(EXIT_FAILURE);
 }
 
@@ -53,11 +53,6 @@ void	parentProcess(char **argv, char **env, int *fd)
 
 void	execCommand(char **env, char *argv)
 {
-	/*
-	1. 환경변수에서 path 부분 split
-	2. findPath에 환경변수 path + 명령어[0] 부분 검색
-	3. 찾은 path로 execve() 실행
-	*/
 	int		i;
 	char	**paths;
 	char	**cmd;
@@ -83,9 +78,8 @@ char	*findPath(char **paths, char **cmd)
 		tmp = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(tmp, cmd[0]);
 		free(tmp);
-		if (!access(path, X_OK))
+		if (!access(path, F_OK))
 			return (path);
 	}
-	errorExit("PATHFIND_FAILURE");
 	return (0);
 }

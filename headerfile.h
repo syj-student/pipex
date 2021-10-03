@@ -17,6 +17,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 //		processor_utils_1.c		/	full
 void	errorExit(char *errorMsg);

@@ -18,7 +18,10 @@ int	main(int argc, char **argv, char ** env)
 	pid_t	pid;
 
 	if (argc != 5)
-		errorExit("ARGUMENT_FAILURE");
+	{
+		write(1, "ARGUMENT_FAILURE\n", 18);
+		return (0);
+	}
 	if (pipe(fd) == -1)
 		errorExit("PIPE_FAILURE");
 	pid = fork();
