@@ -12,7 +12,7 @@
 
 #include "headerfile.h"
 
-int	main(int argc, char **argv, char ** env)
+int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char ** env)
 		errorExit("FORK_FAILURE");
 	if (pid == 0)
 		childProcess(argv, env, fd);
-	if (waitpid(pid, NULL, 0) == -1)
+	if (waitpid(pid, NULL, WNOHANG) == -1)
 		errorExit("WAIT_FAILURE");
 	parentProcess(argv, env, fd);
 	close(fd[0]);

@@ -41,12 +41,12 @@ static size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	return (len);
 }
 
-static char	**free_array(char **temp)
+static char	**free_array(char **temp, int cnt)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (temp[i])
+	while (i < cnt + 1)
 		free(temp[i++]);
 	free(temp);
 	return (0);
@@ -82,7 +82,10 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	len;
 
-	if (s == 0 || !(ret = (char **)malloc(sizeof(char *) * (g_cnt(s, c) + 1))))
+	if (!s)
+		return (0);
+	ret = (char **)malloc(sizeof(char *) * (g_cnt(s, c) + 1));
+	if (!ret)
 		return (0);
 	i = 0;
 	while (*s)
@@ -93,8 +96,9 @@ char	**ft_split(char const *s, char c)
 			while (*s && *s != c)
 				s++;
 			len = s - start + 1;
-			if (!(ret[i] = (char *)malloc(sizeof(char) * len)))
-				return (free_array(ret));
+			ret[i] = (char *)malloc(sizeof(char) * len);
+			if (!(ret[i]))
+				return (free_array(ret, i));
 			ft_strlcpy(ret[i++], start, len);
 		}
 		else

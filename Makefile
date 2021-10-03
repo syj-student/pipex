@@ -12,7 +12,7 @@
 
 NAME	= pipex
 CC		= gcc
-CFLAGS	= #-Wextra -Wall -Werror
+CFLAGS	= -Wextra -Wall -Werror
 
 SRCS	=	main.c \
 			processor_utils_1.c \

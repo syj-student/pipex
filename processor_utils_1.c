@@ -20,7 +20,7 @@ void	errorExit(char *errorMsg)
 
 void	childProcess(char **argv, char **env, int *fd)
 {
-	int inputFilefd;
+	int	inputFilefd;
 
 	inputFilefd = open(argv[1], O_RDONLY);
 	if (inputFilefd == -1)
@@ -36,7 +36,7 @@ void	childProcess(char **argv, char **env, int *fd)
 
 void	parentProcess(char **argv, char **env, int *fd)
 {
-	int outputFilefd;
+	int	outputFilefd;
 
 	outputFilefd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outputFilefd == -1)
