@@ -16,11 +16,23 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <fcntl.h>
-#include <stdio.h>
 #include <stdlib.h>
 
-void	errorExit(void);
-void	childProcess(char **argv, char **envp, int *fd);
-void	parentProcess(char **argv, char **envp, int *fd);
+//		processor_utils_1.c		/	full
+void	errorExit(char *errorMsg);
+void	childProcess(char **argv, char **env, int *fd);
+void	parentProcess(char **argv, char **env, int *fd);
+void	execCommand(char **env, char *argv);
+char	*findPath(char **paths, char **cmd);
+
+//		lib_1.c					/	full
+void	ft_put(char *msg);
+char	**ft_split(char const *s, char c);
+
+//		lib_2.c					/	1
+size_t	ft_strlen(const char *str);
+char	*ft_strnstr(const char *s1, const char *s2, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+
 
 #endif

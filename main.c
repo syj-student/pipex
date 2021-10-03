@@ -18,17 +18,18 @@ int	main(int argc, char **argv, char ** env)
 	pid_t	pid;
 
 	if (argc != 5)
-		errorExit();
+		errorExit("ARGUMENT_FAILURE");
 	if (pipe(fd) == -1)
-		errorExit();
+		errorExit("PIPE_FAILURE");
 	pid = fork();
 	if (pid == -1)
-		errorExit();
+		errorExit("FORK_FAILURE");
 	if (pid == 0)
-		childProccer(argv, env, fd);
-	waitpid(pid, NULL, 0);
+		childProcess(argv, env, fd);
+	if (waitpid(pid, NULL, 0) == -1)
+		errorExit("WAIT_FAILURE");
 	parentProcess(argv, env, fd);
 	close(fd[0]);
 	close(fd[1]);
-	return (0);
+	return (EXIT_FAILURE);
 }

@@ -12,9 +12,11 @@
 
 NAME	= pipex
 CC		= gcc
-CFLAGS	= -Wextra -Wall -Werror
+CFLAGS	= #-Wextra -Wall -Werror
 
-SRCS	= main.c utils_1.c
+SRCS	=	main.c \
+			processor_utils_1.c \
+			src/lib_1.c src/lib_2.c
 OBJS	= $(SRCS:.c=.o)
 
 all		: $(NAME)
