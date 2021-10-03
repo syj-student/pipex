@@ -66,7 +66,7 @@ static size_t	g_cnt(char const *s, char c)
 	return (cnt);
 }
 
-static char	**splitEarlyError(char *s, char c, size_t j)
+static char	**splitEarlyError(char const *s, char c, size_t *j)
 {
 	char	**ret;
 	size_t	i;
