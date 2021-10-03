@@ -12,15 +12,6 @@
 
 #include "../headerfile.h"
 
-void	ft_put(char *msg)
-{
-	if (!msg)
-		return ;
-	while (*msg)
-		write(1, msg++, 1);
-	write(1, "\n", 1);
-}
-
 static size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
@@ -75,6 +66,19 @@ static size_t	g_cnt(char const *s, char c)
 	return (cnt);
 }
 
+static char	**splitEarlyError(char *s, char c)
+{
+	char **ret;
+
+	if (!s)
+		return (0);
+	ret = (char **)malloc(sizeof(char *) * (g_cnt(s, c) + 1));
+	if (!ret)
+		return (0);
+	return (ret);
+}
+
+
 char	**ft_split(char const *s, char c)
 {
 	char	**ret;
@@ -82,11 +86,9 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	len;
 
-	if (!s)
-		return (0);
-	ret = (char **)malloc(sizeof(char *) * (g_cnt(s, c) + 1));
+	ret = splitEarlyError(s, c);
 	if (!ret)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (*s)
 	{

@@ -27,7 +27,6 @@ void	execCommand(char **env, char *argv);
 char	*findPath(char **paths, char **cmd);
 
 //		lib_1.c					/	full
-void	ft_put(char *msg);
 char	**ft_split(char const *s, char c);
 
 //		lib_2.c					/	1
